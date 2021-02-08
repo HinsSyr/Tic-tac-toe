@@ -1,4 +1,14 @@
-﻿using System;
+﻿///////////////////////////////////////////////////////////////////////
+// MainWindow.xaml.cs -    handle logic for the main window          //
+//                                                                   //
+// ver 1.0                                                           //
+// Author: Bo Qiu          Master in Computer Engineering,           //
+//                         Syracuse University                       //
+//                         (315) 278-2362, bqiu03@syr.edu            //
+///////////////////////////////////////////////////////////////////////
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +23,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
+
 namespace WpfApp1
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-   
+  
+    
     public class player
     {
         public String value { set; get; }
@@ -38,16 +48,17 @@ namespace WpfApp1
         int count { set; get; }
         public MainWindow()
         {
-          
             restart_game();
-          
         }
+
+        // O represents player1, X represents player2;
         public void player_initial()
         {
             player1  = new player(1, "O");
             player2 = new player(2, "X");
             current_player = player1;
         }
+        //initial game board;
         public void game_board_inital()
         {
             count = 8;
@@ -58,6 +69,7 @@ namespace WpfApp1
                     board[i,j] = 0;
             }
         }
+        // after finishing game, restart it;
         public void restart_game()
         {
             InitializeComponent();
@@ -65,6 +77,7 @@ namespace WpfApp1
             init_print();
             game_board_inital();
         }
+        //initial UI interface
         public void init_print()
         {
             value0_0.Content = "";
@@ -79,6 +92,7 @@ namespace WpfApp1
 
 
         }
+        //after every player's action, check winner
         public bool checkWinner()
         {
             int res = 0;
@@ -128,6 +142,7 @@ namespace WpfApp1
             return false;
 
         }
+        //check diagonal
         public int checkLeftDiag()
         {
             if (board[0, 0] == 0) return 0;
@@ -138,7 +153,7 @@ namespace WpfApp1
             if (start != board[2, 2]) return 0;
             return start;
         }
-
+        //check diagonal
         public int checkRightDiag()
         {
             if (board[0, 2] == 0) return 0;
@@ -149,6 +164,7 @@ namespace WpfApp1
             if (start != board[2, 0]) return 0;
             return start;
         }
+        //check row by id;
         public int checkRow(int i)
         {
             if (board[i, 0] == 0) return 0;
@@ -163,6 +179,7 @@ namespace WpfApp1
             }
             return start;
         }
+        //check col by id;
         public int checkCol(int i)
         {
             if (board[0, i] == 0) return 0;
@@ -178,6 +195,7 @@ namespace WpfApp1
             return start;
         }
 
+        //button event
         private void Button_Click0_0(object sender, RoutedEventArgs e)
         {
           
@@ -192,9 +210,6 @@ namespace WpfApp1
              checkWinner();
 
             }
-           
-               
-
 
         }
         private void Button_Click0_1(object sender, RoutedEventArgs e)
